@@ -12,7 +12,7 @@ namespace Svuonline.Medicinal.DataAccessLayer
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+    using BussinessObjectLayer;
     public partial class covid19Entities : DbContext
     {
         public covid19Entities()

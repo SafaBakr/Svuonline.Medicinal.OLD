@@ -53,11 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BussinessObjectLayer\CoVID19Model.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CoVID19Model.Context.tt</DependentUpon>
-    </Compile>
+    <Compile Include="BussinesslogicLayer\ClsUserAccountsServices.cs" />
     <Compile Include="BussinessObjectLayer\CoVID19Model.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -78,16 +74,16 @@
     <Compile Include="BussinessObjectLayer\UserRole.cs">
       <DependentUpon>CoVID19Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLayer\ClsUserAccountsDataAccess.cs" />
     <Compile Include="DataAccessLayer\CoVID19Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CoVID19Model.Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLayer\IUserAccountsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BussinesslogicLayer\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <EntityDeploy Include="DataAccessLayer\CoVID19Model.edmx" />
@@ -97,10 +93,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BussinessObjectLayer\CoVID19Model.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CoVID19Model.Context.cs</LastGenOutput>
-    </Content>
     <Content Include="BussinessObjectLayer\CoVID19Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CoVID19Model.cs</LastGenOutput>

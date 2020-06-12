@@ -334,27 +334,6 @@
                 <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
               </MappingFragment>
             </EntityTypeMapping>
-            <EntityTypeMapping TypeName="covid19Model.UserAccount">
-              <ModificationFunctionMapping>
-                <InsertFunction FunctionName="covid19Model.Store.AddUserSP">
-                  <ScalarProperty Name="UserRoleID" ParameterName="UserRoleID" />
-                  <ScalarProperty Name="Password" ParameterName="Password" />
-                  <ScalarProperty Name="UserEmailAddress" ParameterName="UserEmailAddress" />
-                  <ScalarProperty Name="ScreenUserName" ParameterName="ScreenUserName" />
-                  <ResultBinding Name="UserID" ColumnName="UserID" />
-                </InsertFunction>
-                <UpdateFunction FunctionName="covid19Model.Store.UpdateUserSP">
-                  <ScalarProperty Name="UserRoleID" ParameterName="UserRoleID" Version="Current" />
-                  <ScalarProperty Name="Password" ParameterName="Password" Version="Current" />
-                  <ScalarProperty Name="UserEmailAddress" ParameterName="UserEmailAddress" Version="Current" />
-                  <ScalarProperty Name="ScreenUserName" ParameterName="ScreenUserName" Version="Current" />
-                  <ScalarProperty Name="UserID" ParameterName="UserID" Version="Current" />
-                </UpdateFunction>
-                <DeleteFunction FunctionName="covid19Model.Store.DeleteUserSP">
-                  <ScalarProperty Name="UserID" ParameterName="UserID" />
-                </DeleteFunction>
-              </ModificationFunctionMapping>
-            </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserRoles">
             <EntityTypeMapping TypeName="covid19Model.UserRole">

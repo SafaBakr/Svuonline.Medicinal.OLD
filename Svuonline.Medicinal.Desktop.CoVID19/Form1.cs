@@ -14,15 +14,17 @@ namespace Svuonline.Medicinal.Desktop.CoVID19
 {
     public partial class Form1 : Form
     {
+        ClsUIVaildator UserInterfaceValidatorObj = new ClsUIVaildator();
         public Form1()
         {
             InitializeComponent();
+            txtBoxScreenUserName.MaxLength = 15;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-            String SUN="  ";
-            String UEA="safa@safa.com";
+            String SUN= txtBoxScreenUserName.Text.Trim();
+            String UEA= txtBoxUserEmail.Text.Trim();
             String Pwd="12345";
             int URID=1;
             UserAccount userAccountObj = new UserAccount
@@ -32,19 +34,45 @@ namespace Svuonline.Medicinal.Desktop.CoVID19
                 Password = Pwd,
                 UserRoleID = URID,
             };
-            ClsUIVaildator UserInterfaceValidatorObj = new ClsUIVaildator();
-            String ErrorMsg = "هذا الحقل مطلوب!";
+            String ErrorMsg = "!..هذا الحقل مطلوب";
             if (UserInterfaceValidatorObj.TxtBoxValidator(SUN) == 1)
             {
-                button1.Focus();
-                TxtBoxerrorProvider.SetError(button1, ErrorMsg);
-                button1.FlatAppearance.BorderSize = 2;
-                button1.FlatAppearance.BorderColor = Color.Red;
-                button1.BackColor = ColorTranslator.FromHtml("#ff0033");
-                button1.ForeColor = ColorTranslator.FromHtml("#ffcdc9");
-                button1.Font = new Font("", 10, FontStyle.Bold);
+                txtBoxScreenUserName.Focus();
+                TxtBoxerrorProvider.SetError(txtBoxScreenUserName, ErrorMsg);
+                txtBoxScreenUserName.FlatAppearance.BorderSize = 2;
+                txtBoxScreenUserName.FlatAppearance.BorderColor = Color.Red;
+                txtBoxScreenUserName.BackColor = ColorTranslator.FromHtml("#ff0033");
+                txtBoxScreenUserName.ForeColor = ColorTranslator.FromHtml("#ffcdc9");
+                txtBoxScreenUserName.Font = new Font("", 10, FontStyle.Bold);
+                return;
             }
-            ClsUserAccountsServices.Insert(userAccountObj);
+            else if (UserInterfaceValidatorObj.EmailValidator(UEA))
+                {
+                TxtBoxerrorProvider.Clear();
+                txtBoxScreenUserName.FlatAppearance.BorderSize = 1;
+                txtBoxScreenUserName.FlatAppearance.BorderColor = ColorTranslator.FromHtml("#252526");
+                txtBoxScreenUserName.BackColor = ColorTranslator.FromHtml("#f0f0f0");
+                txtBoxScreenUserName.ForeColor = ColorTranslator.FromHtml("#000000");
+                txtBoxScreenUserName.Font = new Font("", 9, FontStyle.Regular);
+                try
+                {
+                    ClsUserAccountsServices.Insert(userAccountObj);
+                    MessageBox.Show("تم تسجيل البيانات بنجاح", "رسـالـة تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch
+                {
+                    MessageBox.Show("حدثت مشكلة أثناء تخزين البيانات", "رسـالـة تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show(" !..غـير صحيح   " + UEA + "  :هذا الإدخـال", "رسـالـة تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+        }
+        private void txtBoxScreenUserName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            UserInterfaceValidatorObj.InputcharCheck(e);
         }
     }
 }
